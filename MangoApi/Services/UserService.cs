@@ -17,6 +17,11 @@ namespace MangoApi.Services
             return await _context.User.ToListAsync();
         }
 
+        public async Task<List<User>> GetTopUsersAsync()
+        {
+            return  await _context.User.OrderByDescending(u => u.Money).Take(10).ToListAsync();
+        }
+
         public async Task<User> GetUserByIdAsync(int id)
         {
             return await _context.User.FindAsync(id);

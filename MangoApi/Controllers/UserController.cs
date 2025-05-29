@@ -23,6 +23,13 @@ namespace MangoApi.Controllers
             return Ok(users);
         }
 
+        [HttpGet("Top")]
+        public async Task<IActionResult> GetTopUsers()
+        {
+            var users = await _userService.GetTopUsersAsync();
+            return Ok(users);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
