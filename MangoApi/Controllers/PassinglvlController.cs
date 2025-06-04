@@ -38,7 +38,7 @@ namespace MangoApi.Controllers
             }
 
 
-            [HttpGet("titles/{title}")]
+            [HttpGet("Passing")]
             public IActionResult GetPassinglvlUserId(int user_id, int lvl_id)
             {
                 var Passinglvl = _Passinglvlervice.GetPassinglvlByUserId(user_id, lvl_id);
@@ -62,21 +62,27 @@ namespace MangoApi.Controllers
                 return CreatedAtAction(nameof(GetPassinglvl), new { id = addedPassinglvl.Id }, addedPassinglvl);
             }
 
-            // PUT: api/Passinglvl/{id}
-            [HttpPut("{id}")]
-            public IActionResult UpdatePassinglvl(int id, [FromBody] Passinglvl updatedPassinglvl)
+        // PUT: api/Passinglvl/{id}
+        // PUT: api/Passinglvl/{id}
+        [HttpPut("{id}")]
+        public IActionResult UpdatePassinglvl(int id, [FromBody] Passinglvl updatedPassinglvl)
+        {
+            if (updatedPassinglvl == null || id != updatedPassinglvl.Id)
             {
-                var Passinglvl = _Passinglvlervice.UpdatePassinglvl(id, updatedPassinglvl);
-                if (Passinglvl == null)
-                {
-                    return NotFound();
-                }
-
-                return NoContent();
+                return BadRequest("Invalid data.");
             }
 
-            // DELETE: api/Passinglvl/{id}
-            [HttpDelete("{id}")]
+            var Passinglvl = _Passinglvlervice.UpdatePassinglvl(id, updatedPassinglvl);
+            if (Passinglvl == null)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
+
+        // DELETE: api/Passinglvl/{id}
+        [HttpDelete("{id}")]
             public IActionResult DeletePassinglvl(int id)
             {
                 _Passinglvlervice.DeletePassinglvl(id);

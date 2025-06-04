@@ -9,13 +9,13 @@ namespace MangoApi.Models
         public int Id { get; set; }
 
         public int User_Id { get; set; }
-        // Навигационные свойства
-        [ForeignKey("User_Id")]
-        public User User { get; set; }
+        //// Навигационные свойства
+        //[ForeignKey("User_Id")]
+        //public User User { get; set; }
         public int Levels_Id { get; set; }
-        // Навигационные свойства
-        [ForeignKey("Levels_Id")]
-        public Levels Levels { get; set; }
+        //// Навигационные свойства
+        //[ForeignKey("Levels_Id")]
+        //public Levels Levels { get; set; }
 
         public int CountStars { get; set; }
     }
